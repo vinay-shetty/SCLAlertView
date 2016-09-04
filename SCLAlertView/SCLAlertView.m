@@ -216,7 +216,7 @@ SCLTimerDisplay *buttonTimer;
     _backgroundView.userInteractionEnabled = YES;
     
     // Title
-    _labelTitle.numberOfLines = 0;
+    _labelTitle.numberOfLines = 1;
     _labelTitle.textAlignment = NSTextAlignmentCenter;
     _labelTitle.font = [UIFont fontWithName:_titleFontFamily size:_titleFontSize];
     _labelTitle.frame = CGRectMake(12.0f, kTitleTop, _windowWidth - 24.0f, kTitleHeight);
@@ -899,17 +899,20 @@ SCLTimerDisplay *buttonTimer;
     {
         self.labelTitle.text = title;
         
-        // Adjust text view size, if necessary
-        CGSize sz = CGSizeMake(_windowWidth - 24.0f, CGFLOAT_MAX);
-        CGSize size = [_labelTitle sizeThatFits:sz];
-        CGFloat ht = ceilf(size.height);
-        if (ht > kTitleHeight)
-        {
-            self.windowHeight += (ht - _subTitleHeight);
-            _subTitleY += (ht - _subTitleHeight);
+        if (_labelTitle.numberOfLines == 0){
+            // Adjust text view size, if necessary
+            CGSize sz = CGSizeMake(_windowWidth - 24.0f, CGFLOAT_MAX);
+            CGSize size = [_labelTitle sizeThatFits:sz];
+            CGFloat ht = ceilf(size.height);
+            if (ht > kTitleHeight)
+            {
+                self.windowHeight += (ht - kTitleHeight);
+                _subTitleY += (ht - kTitleHeight);
+                kTitleHeight = ht;
+            }
+            
+            _labelTitle.frame = CGRectMake(12.0f, kTitleTop, _windowWidth - 24.0f, kTitleHeight);
         }
-        
-        _labelTitle.frame = CGRectMake(12.0f, kTitleTop, _windowWidth - 24.0f, ht);
     }
     else
     {
