@@ -323,14 +323,17 @@ SCLTimerDisplay *buttonTimer;
         CGRect newBackgroundFrame = self.backgroundView.frame;
         newBackgroundFrame.size = sz;
         self.backgroundView.frame = newBackgroundFrame;
-        
+        if (self.view.superview == nil){
+            NSLog(@"No Superview");
+        }
+
         // Set new main frame
         CGRect r;
         if (self.view.superview != nil)
         {
             // View is showing, position at center of screen
             r = CGRectMake((sz.width-_windowWidth)/2, (sz.height-_windowHeight)/2, _windowWidth, _windowHeight);
-             NSLog(@"Orgin %f, window height %f, height: %f", r.origin.y, _windowHeight, sz.height);
+            NSLog(@"Orgin %f, window height %f, height: %f", r.origin.y, _windowHeight, sz.height);
             if (_bottomPadding  && r.origin.y + _windowHeight > sz.height - _bottomPadding){
                 NSLog(@"Orgin %f, window height %f, height: %f", r.origin.y, _windowHeight, sz.height);
                 r.origin.y = sz.height - _bottomPadding - _windowHeight;
