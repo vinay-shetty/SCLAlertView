@@ -317,18 +317,12 @@ SCLTimerDisplay *buttonTimer;
         }
     }
     
-     NSLog(@"1111111");
-    
     if(!_usingNewWindow)
     {
-         NSLog(@"22222");
         // Set new background frame
         CGRect newBackgroundFrame = self.backgroundView.frame;
         newBackgroundFrame.size = sz;
         self.backgroundView.frame = newBackgroundFrame;
-        if (self.view.superview == nil){
-            NSLog(@"No Superview");
-        }
 
         // Set new main frame
         CGRect r;
@@ -336,9 +330,7 @@ SCLTimerDisplay *buttonTimer;
         {
             // View is showing, position at center of screen
             r = CGRectMake((sz.width-_windowWidth)/2, (sz.height-_windowHeight)/2, _windowWidth, _windowHeight);
-            NSLog(@"Orgin %f, window height %f, height: %f", r.origin.y, _windowHeight, sz.height);
             if (_bottomPadding  && r.origin.y + _windowHeight > sz.height - _bottomPadding){
-                NSLog(@"Orgin %f, window height %f, height: %f", r.origin.y, _windowHeight, sz.height);
                 r.origin.y = sz.height - _bottomPadding - _windowHeight;
                 if (r.origin.y < 40){
                     r.origin.y = 40;
@@ -362,9 +354,15 @@ SCLTimerDisplay *buttonTimer;
     }
     else
     {
-        NSLog(@"3333333");
         CGFloat x = (sz.width - _windowWidth) / 2;
         CGFloat y = (sz.height - _windowHeight - (kCircleHeight / 8)) / 2;
+        
+        if (_bottomPadding  && y + _windowHeight > sz.height - _bottomPadding){
+            y = sz.height - _bottomPadding - _windowHeight;
+            if (y < 40){
+                y = 40;
+            }
+        }
         
         _contentView.frame = CGRectMake(x, y, _windowWidth, _windowHeight);
         y -= kCircleHeightBackground / 2;
