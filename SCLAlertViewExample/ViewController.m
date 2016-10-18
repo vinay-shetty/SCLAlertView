@@ -415,7 +415,8 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
 - (IBAction)showQuestion:(id)sender
 {
     SCLAlertView *alert = [[SCLAlertView alloc] init];
-    
+    alert.bottomPadding = 400;
+    alert.showAnimationType = SlideInFromTop;
     [alert showQuestion:self title:@"Question?" subTitle:kSubtitle closeButtonTitle:@"Dismiss" duration:0.0f];
 }
 

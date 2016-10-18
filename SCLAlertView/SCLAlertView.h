@@ -277,6 +277,12 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
  */
 - (UIView *)addCustomView:(UIView *)customView;
 
+/** Add a custom UIView with keyboard observers
+ *
+ * @param customView UIView object to be added above the first SCLButton.
+ */
+- (UIView *)addCustomViewWithObservers:(UIView *)customView;
+
 /** Add Text Field
  *
  * @param title The text displayed on the textfield.

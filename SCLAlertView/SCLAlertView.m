@@ -373,7 +373,7 @@ SCLTimerDisplay *buttonTimer;
         _circleIconImageView.frame = CGRectMake(kCircleHeight / 2 - _circleIconHeight / 2, kCircleHeight / 2 - _circleIconHeight / 2, _circleIconHeight, _circleIconHeight);
         _labelTitle.frame = CGRectMake(12.0f + self.contentView.frame.origin.x, kTitleTop + self.contentView.frame.origin.y, _windowWidth - 24.0f, kTitleHeight);
     }
-    NSLog(@"4444444");
+    
     // Text fields
     CGFloat y = (_labelTitle.text == nil) ? kTitleTop : kTitleTop + _labelTitle.frame.size.height;
     _viewText.frame = CGRectMake(12.0f, y, _windowWidth - 24.0f, _subTitleHeight);
@@ -577,6 +577,12 @@ SCLTimerDisplay *buttonTimer;
     [_customViews addObject:customView];
     
     return customView;
+}
+
+- (UIView *)addCustomViewWithObservers:(UIView *)customView
+{
+    [self addObservers];
+    return [self addCustomViewWithObservers:customView];
 }
 
 #pragma mark - SwitchView
