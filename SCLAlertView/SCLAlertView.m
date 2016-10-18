@@ -582,7 +582,7 @@ SCLTimerDisplay *buttonTimer;
 - (UIView *)addCustomViewWithObservers:(UIView *)customView
 {
     [self addObservers];
-    return [self addCustomViewWithObservers:customView];
+    return [self addCustomView:customView];
 }
 
 #pragma mark - SwitchView
