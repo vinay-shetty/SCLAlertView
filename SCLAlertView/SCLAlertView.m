@@ -531,6 +531,7 @@ SCLTimerDisplay *buttonTimer;
     _backgroundViewColor = backgroundViewColor;
     _circleViewBackground.backgroundColor = _backgroundViewColor;
     _contentView.backgroundColor = _backgroundViewColor;
+    _contentView.layer.borderColor = _backgroundViewColor.CGColor;
     _viewText.backgroundColor = _backgroundViewColor;
 }
 
@@ -1968,6 +1969,7 @@ SCLTimerDisplay *buttonTimer;
     }
     return _backgroundViewColor;
 }
+
 - (SCLAlertViewBuilder *(^) (UIColor *iconTintColor))iconTintColor {
     if (!_iconTintColor) {
         __weak typeof(self) weakSelf = self;
